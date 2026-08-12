@@ -17,7 +17,7 @@ async function signUp(req, res) {
 
             const newUser = new userModel({ username, email, password });
             await newUser.save();
-            const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
+            const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
             res.status(201).json({
                 message: "User created successfully",
                 token,
@@ -56,14 +56,15 @@ async function login(req, res) {
         }
 
         // 4. Generate Token
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
 
 
         res.cookie("token", token, {
             httpOnly: true,
             secure: false, 
             sameSite: "lax",
-            maxAge: 60 * 60 * 1000
+            maxAge: 24 * 60 * 60 * 1000 // 1 day
+            
         });
 
         res.json({
