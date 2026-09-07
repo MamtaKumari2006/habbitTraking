@@ -4,8 +4,9 @@ import Login from './Pages/Login'
 import Signup from './Pages/Signup'
 import Dashboard from './Pages/Dashboard'
 import Footer from './components/Footer'
-import HabitDetails from './Pages/HabitDetails'
+
 import ProtectedRoutes from './routes/ProtectedRoute'
+import HabitDetails from './Pages/SingleHabit'
 import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import { ToastContainer } from 'react-toastify'
@@ -16,7 +17,7 @@ import { ToastContainer } from 'react-toastify'
 const App = () => {
   const location = window.location;
 
-  const hideHeaderFooter=["/login","/signup"].includes(location.pathname);
+  const hideHeaderFooter = ["/login", "/signup"].includes(location.pathname);
   return (
     <div>
       <ToastContainer />
@@ -45,6 +46,8 @@ const App = () => {
               <HabitDetails />
             </ProtectedRoutes>
           } />
+
+        
 
 
         <Route path="*" element={<div>Page not found</div>} />
