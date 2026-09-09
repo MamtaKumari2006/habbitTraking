@@ -49,6 +49,19 @@ const Dashboard = () => {
     }
   }
 
+  const handleComplete = async (habitId) => {
+    try {
+      const response = await API.post(`/habits/list/${habitId}/completed`, {}, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+    } catch (err) {
+      console.error("Error completing habit:", err)
+    }
+  }
+
+  const completedToday = habits.some((habit) => habit.completedToday) // Check if any habit is completed today
 
   useEffect(() => {
     const fetchHabits = async () => {
@@ -100,6 +113,37 @@ const Dashboard = () => {
             <div key={habit._id} className="border border-gray-300 rounded-lg p-4 mb-4 flex justify-between items-center">
               <h2 className="text-xl font-bold text-gray-700">{habit.title}</h2>
               <p className="text-gray-600">{habit.description}</p>
+
+              <button
+                onClick={() => handleComplete(habit._id)}
+                disabled={completedToday} // completed hone ke baad click block ho jaye
+                className={`w-10 h-10 rounded-full border-2 flex items-center justify-center transition-all duration-200 cursor-pointer ${completedToday
+                    ? "bg-emerald-500 border-emerald-500 text-white" // Clicked State (Green)
+                    : "bg-white border-slate-300 hover:border-indigo-500 text-slate-400" // Normal State (White & Gray)
+                  }`}
+              >
+                {/* Shart: Tick (SVG) tabhi dikhega jab completedToday true hoga */}
+                {completedToday && (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="3.5" // Thick tick for better visibility
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="lucide lucide-check"
+                  >
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                )}
+              </button>
+
+              <button className='bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded'>Edit</button>
+
+
               <button
                 onClick={() => handleDelete(habit._id)}
                 className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-2"
@@ -121,7 +165,7 @@ const Dashboard = () => {
               <div className=''>
                 <label className='' htmlFor="title">Title </label>
                 <input
-                className='border'
+                  className='border'
                   type="text"
                   id="title"
                   name='title'
@@ -134,7 +178,7 @@ const Dashboard = () => {
               <div>
                 <label htmlFor="description">Description  </label>
                 <input
-                className='border'
+                  className='border'
                   type="text"
                   id="description"
                   name='description'
@@ -147,7 +191,7 @@ const Dashboard = () => {
               <div>
                 <label htmlFor="frequency">Frequency  </label>
                 <select
-                className='border'
+                  className='border'
                   id="frequency"
                   name='frequency'
                   value={form.frequency}
@@ -162,16 +206,16 @@ const Dashboard = () => {
               </div>
               <div className='flex gap-4 m-2'>
                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">save Habit</button>
-              
 
-              <button className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" onClick={() => setAddHabits(false)}>
-              Cancel
-            </button>
-            </div>
+
+                <button className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" onClick={() => setAddHabits(false)}>
+                  Cancel
+                </button>
+              </div>
 
             </form>
 
-            
+
           </div>
 
         </div>
