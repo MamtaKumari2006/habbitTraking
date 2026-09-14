@@ -6,7 +6,7 @@ import Dashboard from './Pages/Dashboard'
 import Footer from './components/Footer'
 
 import ProtectedRoutes from './routes/ProtectedRoute'
-import HabitDetails from './Pages/SingleHabit'
+import SingleHabit from './Pages/SingleHabit'
 import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import { ToastContainer } from 'react-toastify'
@@ -43,7 +43,7 @@ const App = () => {
           path="/habit/:id"
           element={
             <ProtectedRoutes>
-              <HabitDetails />
+              <SingleHabit />
             </ProtectedRoutes>
           } />
 

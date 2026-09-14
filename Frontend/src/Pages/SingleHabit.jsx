@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import API from '../api/axios'
 
-const HabitDetails = () => {
+const SingleHabit = () => {
   const { id } = useParams()
   const navigate = useNavigate()
   const [habit, setHabit] = useState(null)
@@ -117,4 +117,4 @@ const HabitDetails = () => {
   )
 }
 
-export default HabitDetails
+export default SingleHabit

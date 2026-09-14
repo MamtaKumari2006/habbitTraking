@@ -231,6 +231,39 @@ async function markHabitAsCompleted(req, res) {
     }
 }
 
+async function unmarkedHabitAsCompleted(req, res) {
+    try {
+        const habitId = req.params.id;
+        const habit = await Habit.findOne({ _id: habitId, user: req.user._id });
+
+        if (!habit) {
+            return res.status(404).json({ message: "Habit not found" });
+        }
+
+        const today = normalizeDays();
+        const alreadyCompleted = habit.completedDates.some(date => normalizeDays(date).getTime() === today.getTime());
+
+        if (!alreadyCompleted) {
+            return res.status(400).json({ message: "Habit not marked as completed for today" });
+        }
+
+        habit.completedDates = habit.completedDates.filter(date => normalizeDays(date).getTime() !== today.getTime());
+
+        const { currentStreak, longestStreak } = calculateStreak(habit.completedDates);
+        habit.currentStreak = currentStreak;
+        habit.longestStreak = longestStreak;
+        const updateHabit = await habit.save();
+
+        return res.status(200).json({ message: "Habit unmarked as completed", habit: updateHabit });
+    } catch (error) {
+        console.error("UNMARK HABIT AS COMPLETED ERROR:", error);
+        if (error.name === "CastError") {
+            return res.status(400).json({ message: "Invalid Habit ID" });
+        }
+        return res.status(500).json({ message: error.message });
+    }
+}
+
 async function getSingleHabitAnalytics(req, res) {
     try {
         const habitId = req.params.id;
@@ -355,4 +388,4 @@ async function getOverallAnalytics(req, res) {
     }
 }
 
-module.exports = { createHabit, getHabits, getSingleHabit, updateHabit, deleteHabit, markHabitAsCompleted, getSingleHabitAnalytics, getOverallAnalytics };
+module.exports = { createHabit, getHabits, getSingleHabit, updateHabit, deleteHabit, markHabitAsCompleted,unmarkedHabitAsCompleted, getSingleHabitAnalytics, getOverallAnalytics };
