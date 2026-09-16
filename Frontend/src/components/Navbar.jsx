@@ -29,10 +29,7 @@ const Navbar = () => {
         <Link 
           to="/" 
           className="flex items-center gap-2 text-xl font-extrabold text-indigo-600 hover:opacity-90 transition"
-        >
-          <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-indigo-100 text-indigo-600 text-base">
-            ⚡
-          </span>
+        >          
           HabitTracker
         </Link>
 

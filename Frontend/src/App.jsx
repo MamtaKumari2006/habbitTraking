@@ -40,7 +40,7 @@ const App = () => {
           }
         />
         <Route
-          path="/habit/:id"
+          path="/habits/:id"
           element={
             <ProtectedRoutes>
               <SingleHabit />
