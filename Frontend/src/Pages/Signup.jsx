@@ -16,7 +16,7 @@ const Signup = () => {
     setLoading(true)
   
     try {
-      const response = await API.post('/api/auth/signup', { username, email, password })
+      const response = await API.post('/auth/signup', { username, email, password })
       localStorage.setItem('token', response.data.token)
       localStorage.setItem('user', JSON.stringify(response.data.user))
       navigate('/dashboard')

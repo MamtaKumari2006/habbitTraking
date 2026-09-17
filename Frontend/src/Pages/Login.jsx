@@ -25,7 +25,7 @@ const Login = () => {
     setLoading(true)
 
     try {
-      const response = await API.post('/api/auth/login', formData)
+      const response = await API.post('/auth/login', formData)
       localStorage.setItem('token', response.data.token)
       localStorage.setItem('user', JSON.stringify(response.data.user))
       navigate('/dashboard')
