@@ -211,7 +211,7 @@ const Dashboard = () => {
   const bestStreak = habits.length > 0 ? Math.max(...habits.map(h => h.longestStreak || 0)) : 0;
 
   return (
-    <div className="min-h-[85vh] bg-slate-50 py-8 px-4 sm:px-6 lg:px-12">
+    <div className="min-h-[85vh] bg-slate-50 py-8 px-4 sm:px-6 lg:px-12 overflow-y-auto no-scrollbar">
       <div className="max-w-6xl mx-auto space-y-8">
 
         {/* ==================== CUTE BANNER ==================== */}
@@ -221,7 +221,7 @@ const Dashboard = () => {
               Consistency is Key
             </span>
             <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
-              Hello, Rockstar! 👋
+              Hello! 👋
             </h1>
             <p className="text-sm sm:text-base text-white/90 max-w-md">
               "Your habits define your future." Small steps every day lead to big changes.

@@ -29,7 +29,7 @@ const Signup = () => {
 
   return (
     // Soft cohesive background across the app
-    <div className="min-h-screen w-screen bg-linear-to-br from-indigo-50 via-white to-amber-50 flex items-center justify-center px-4 py-12 overflow-hidden">
+    <div className="min-h-screen w-screen bg-linear-to-br from-indigo-50 via-white to-amber-50 flex items-center justify-center px-4 py-12 overflow-hidden overflow-y-auto no-scrollbar">
       
       {/* Centered Signup Card */}
       <div className="w-full max-w-md bg-white rounded-3xl shadow-xl border border-gray-100 p-8 sm:p-10 transition duration-300 hover:shadow-2xl">

@@ -7,31 +7,31 @@ import Footer from './components/Footer'
 
 import ProtectedRoutes from './routes/ProtectedRoute'
 import SingleHabit from './Pages/SingleHabit'
-import { Routes, Route } from 'react-router-dom'
+
+import { Routes, Route, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import { ToastContainer } from 'react-toastify'
 
-
-
-
 const App = () => {
-  const location = window.location;
+  
+  const location = useLocation();
 
-  const hideHeaderFooter = ["/login", "/signup"].includes(location.pathname);
+  
+  const currentPath = location.pathname.toLowerCase();
+  const hideHeaderFooter = currentPath.includes("login") || currentPath.includes("signup");
+
   return (
     <div>
       <ToastContainer />
       {!hideHeaderFooter && <Navbar />}
 
       <Routes>
-
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/home" element={<Home />} />
 
         <Route
-
           path="/dashboard"
           element={
             <ProtectedRoutes>
@@ -45,13 +45,12 @@ const App = () => {
             <ProtectedRoutes>
               <SingleHabit />
             </ProtectedRoutes>
-          } />
-
-        
-
+          } 
+        />
 
         <Route path="*" element={<div>Page not found</div>} />
       </Routes>
+      
       {!hideHeaderFooter && <Footer />}
     </div>
   )

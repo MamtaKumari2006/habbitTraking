@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const Home = () => {
   return (
     // Pura page container soft gradient ke sath
-    <div className="min-h-[85vh] bg-linear-to-br from-indigo-200 via-white to-amber-50 flex items-center px-6 lg:px-16 py-12 overflow-hidden">
+    <div className="min-h-[85vh] bg-linear-to-br from-indigo-200 via-white to-amber-50 flex items-center px-6 lg:px-16 py-12 overflow-hidden overflow-y-auto no-scrollbar">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full">
         
         {/* Left Container: Text and CTA Buttons */}

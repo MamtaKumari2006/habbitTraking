@@ -146,13 +146,13 @@ const SingleHabit = () => {
   }
 
   return (
-    <div className="min-h-[85vh] bg-slate-50 py-8 px-4 sm:px-6 lg:px-12">
-      <div className="max-w-3xl mx-auto space-y-6">
+    <div className="min-h-[85vh] bg-slate-50 py-8 px-4 sm:px-6 lg:px-12 overflow-y-auto no-scrollbar">
+      <div className="max-w-3xl mx-auto space-y-6 overflow-y-auto no-scrollbar">
 
         {/* Back Button */}
         <Link
           to="/dashboard"
-          className="inline-flex items-center gap-2 text-sm font-semibold h-9 rounded-3xl p-2 bg-indigo-500 text-black hover:text-indigo-600 transition"
+          className="inline-flex items-center gap-2 text-sm font-semibold h-9 rounded-3xl p-2 bg-indigo-500 text-black hover:text-indigo-600 transition "
         >
           ← Back to Dashboard
         </Link>

@@ -37,7 +37,7 @@ const Login = () => {
   }
 return (
     // h-screen aur w-screen se ye bina scrollbar ke poori screen cover karega
-    <div className="h-screen w-screen grid grid-cols-1 lg:grid-cols-2 bg-slate-50 overflow-hidden">
+    <div className="h-screen w-screen grid grid-cols-1 lg:grid-cols-2 bg-slate-50 overflow-hidden overflow-y-auto no-scrollbar">
       
       {/* LEFT SIDE: Form Container (Very clean, centered on light-grey background) */}
       <div className="flex items-center justify-center p-8 sm:p-12 lg:p-16 bg-slate-50">
