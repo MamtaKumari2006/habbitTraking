@@ -16,7 +16,6 @@ const Dashboard = () => {
   const [isEditing, setIsEditing] = useState(false)
   const [editId, setEditId] = useState(null)
   const [analytics, setAnalytics] = useState(null)
-  
 
   const handleChange = (e) => {
     setForm({
@@ -131,7 +130,6 @@ const Dashboard = () => {
       return completedDate.getTime() === today.getTime();
     });
   };
-  
 
   useEffect(() => {
     const fetchHabits = async () => {
@@ -169,19 +167,16 @@ const Dashboard = () => {
     fetchAnalytics()
   }, [])
 
-  // Graph Data Generator Function ✅
   const getWeeklyGraphData = () => {
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     const today = new Date()
     const data = []
 
-    // Pichle 7 dino ke liye loop
     for (let i = 6; i >= 0; i--) {
       const d = new Date()
       d.setDate(today.getDate() - i)
       d.setHours(0, 0, 0, 0)
 
-      // Count completed habits for this specific date in database
       const count = habits.reduce((acc, habit) => {
         const isDone = habit.completedDates?.some(date => {
           const completedDate = new Date(date)
@@ -220,19 +215,18 @@ const Dashboard = () => {
       <div className="max-w-6xl mx-auto space-y-8">
 
         {/* ==================== CUTE BANNER ==================== */}
-        <div className="relative overflow-hidden rounded-3xl bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500 p-8 sm:p-10 text-white shadow-lg">
+        <div className="relative overflow-hidden rounded-3xl bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500 p-8 sm:p-10 text-white shadow-xl">
           <div className="relative z-10 space-y-2">
             <span className="bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest text-white">
               Consistency is Key
             </span>
             <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
-              Hello, !
+              Hello, Rockstar! 👋
             </h1>
             <p className="text-sm sm:text-base text-white/90 max-w-md">
               "Your habits define your future." Small steps every day lead to big changes.
             </p>
           </div>
-          {/* Floating graphic element in banner background */}
           <div className="absolute right-0 bottom-0 top-0 w-1/3 opacity-20 hidden md:block select-none pointer-events-none">
             <span className="text-[120px] absolute right-10 bottom-2">🎯</span>
           </div>
@@ -256,7 +250,6 @@ const Dashboard = () => {
           </div>
         ) : (
 
-          /* ==================== SPLIT LAYOUT (HALF-HALF) ==================== */
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
             {/* LEFT HALF - Habits Checklist */}
@@ -281,7 +274,6 @@ const Dashboard = () => {
                       className={`border rounded-2xl p-5 bg-white shadow-xs hover:shadow-sm transition duration-200 relative overflow-hidden flex items-center justify-between gap-4 ${completedToday ? "border-emerald-200 bg-emerald-50/10" : "border-slate-100"
                         }`}
                     >
-                      {/* Left: Checkbox + Title Info */}
                       <div className="flex items-center gap-4 flex-1">
                         <button
                           onClick={() => handleToggle(habit._id)}
@@ -309,7 +301,7 @@ const Dashboard = () => {
 
                         <div>
                           <Link
-                            to={`/habits/${habit._id}`} 
+                            to={`/habits/${habit._id}`}
                             className={`text-base font-bold transition-all hover:text-indigo-600 hover:underline cursor-pointer ${completedToday ? "line-through text-slate-400" : "text-slate-800"
                               }`}
                           >
@@ -324,7 +316,6 @@ const Dashboard = () => {
                         </div>
                       </div>
 
-                      {/* Right: Actions (Edit/Delete) */}
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => handleEditClick(habit)}
@@ -346,78 +337,52 @@ const Dashboard = () => {
               </div>
             </div>
 
-            {/* RIGHT HALF - EMPTY (Tumhare graphs / analytics ke liye ready) */}
-
-
-
-
+            {/* RIGHT HALF - Analytics Improved UI */}
             <div className="lg:col-span-5 space-y-6">
-
-
               <h2 className="text-xl font-extrabold text-slate-800 tracking-tight">Analytics & Insights</h2>
 
-              {/* Placeholder Empty Card - Tum yahan apna graph banaogi */}
-              <div className="bg-white rounded-3xl border-2 border-dashed border-slate-200 p-10 text-center min-h-75 flex flex-col items-center justify-center">
-                <p className="text-4xl mb-3">📊</p>
-                <p className="text-sm font-semibold text-slate-500">Your charts</p>
-                <div className='cards bg-cyan-100 p-4 rounded-lg mt-4 grid grid-cols-2 gap-3'>
-                  <div className='card bg-amber-200 p-3 rounded-lg h-1.55 flex items-center justify-center'>
-                    Total Habits: {habits.length}
-                  </div>
-                  <div className='card bg-amber-200 p-3 rounded-lg h-1.55 flex items-center justify-center'>
-                    Completed Habits: {completedTodayCount}
-                  </div>
-                  <div className='card bg-amber-200 p-3 rounded-lg h-1.55 flex items-center justify-center'>
-                    Pending Habits: {pendingCount}
-                  </div>
-                  <div className='card bg-amber-200 p-3 rounded-lg h-1.55 flex items-center justify-center'>
-                    Best Streak: {bestStreak}
-                  </div>
+              {/* STATS CARDS (Cleaned up UI) */}
+              <div className="grid grid-cols-2 gap-3">
+                <div className="bg-white p-4 rounded-2xl border border-slate-100 shadow-xs">
+                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Total</p>
+                  <p className="text-2xl font-extrabold text-slate-800 mt-1">{habits.length}</p>
                 </div>
-
-                <p className="text-xs text-slate-400 mt-1">Here you will able to see your progress and insights.</p>
+                <div className="bg-white p-4 rounded-2xl border border-slate-100 shadow-xs">
+                  <p className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">Done Today</p>
+                  <p className="text-2xl font-extrabold text-emerald-600 mt-1">{completedTodayCount} ✓</p>
+                </div>
+                <div className="bg-white p-4 rounded-2xl border border-slate-100 shadow-xs">
+                  <p className="text-[10px] font-bold text-amber-400 uppercase tracking-widest">Pending</p>
+                  <p className="text-2xl font-extrabold text-amber-600 mt-1">{pendingCount}</p>
+                </div>
+                <div className="bg-white p-4 rounded-2xl border border-slate-100 shadow-xs">
+                  <p className="text-[10px] font-bold text-indigo-400 uppercase tracking-widest">Best Streak</p>
+                  <p className="text-2xl font-extrabold text-indigo-600 mt-1">{bestStreak} 🔥</p>
+                </div>
               </div>
 
-              <div className="bg-white rounded-3xl border-2 border-dashed border-slate-200 p-10 text-center min-h-75 flex flex-col items-center justify-center">
-                <p className="text-4xl mb-3">📊</p>
-                <p className="text-sm font-semibold text-slate-500">Your graph</p>
-                {/* Placeholder Empty Card - Tum yahan apna graph banaogi */}
-                <div className="bg-white rounded-3xl border-2 border-dashed border-slate-200 p-10 ...">
-                  <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm ">
-                    <h3 className="text-sm font-extrabold text-slate-800 mb-4 uppercase tracking-widest">
-                      📈 Weekly Progress Flow
-                    </h3>
+              {/* GRAPH (Clean container) */}
+              <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-xs">
+                <h3 className="text-xs font-extrabold text-slate-500 mb-4 uppercase tracking-widest">
+                  📈 Weekly Progress Flow
+                </h3>
 
-                    <div className='h-50 w-full'>
-
-                      <ResponsiveContainer width="100%" height="100%">
-                        <AreaChart data={getWeeklyGraphData()} margin={{ top: 10, right: 10, left: -30, bottom: 0 }}>
-                          <defs>
-                            {/* Gradient fill effect (Cool fade effect under the line) */}
-                            <linearGradient id="dashboardColor" x1="0" y1="0" x2="0" y2="1">
-                              <stop offset="5%" stopColor="#6366f1" stopOpacity={0.4} />
-                              <stop offset="95%" stopColor="#6366f1" stopOpacity={0} />
-                            </linearGradient>
-                          </defs>
-
-                          {/* X-Axis (Days: Mon, Tue) & Y-Axis (Count: 1, 2) */}
-                          <XAxis dataKey="day" tickLine={false} axisLine={false} tick={{ fontSize: 10, fill: '#94a3b8' }} />
-                          <YAxis allowDecimals={false} tickLine={false} axisLine={false} tick={{ fontSize: 10, fill: '#94a3b8' }} />
-
-                          {/* Hover Tooltip (Black floating box on hover) */}
-                          <Tooltip cursor={false} contentStyle={{ background: '#0f172a', borderRadius: '12px', border: 'none', color: '#fff', fontSize: '11px' }} />
-
-                          {/* The Actual Area Line */}
-                          <Area type="monotone" dataKey="Completed" stroke="#6366f1" strokeWidth={2.5} fillOpacity={1} fill="url(#dashboardColor)" />
-                        </AreaChart>
-                      </ResponsiveContainer>
-
-                    </div>
-                  </div>
+                <div className='h-52 w-full'>
+                  <ResponsiveContainer width="100%" height="100%">
+                    <AreaChart data={getWeeklyGraphData()} margin={{ top: 10, right: 10, left: -30, bottom: 0 }}>
+                      <defs>
+                        <linearGradient id="dashboardColor" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="5%" stopColor="#6366f1" stopOpacity={0.4} />
+                          <stop offset="95%" stopColor="#6366f1" stopOpacity={0} />
+                        </linearGradient>
+                      </defs>
+                      <XAxis dataKey="day" tickLine={false} axisLine={false} tick={{ fontSize: 10, fill: '#94a3b8' }} />
+                      <YAxis allowDecimals={false} tickLine={false} axisLine={false} tick={{ fontSize: 10, fill: '#94a3b8' }} />
+                      <Tooltip cursor={false} contentStyle={{ background: '#0f172a', borderRadius: '12px', border: 'none', color: '#fff', fontSize: '11px' }} />
+                      <Area type="monotone" dataKey="Completed" stroke="#6366f1" strokeWidth={2.5} fillOpacity={1} fill="url(#dashboardColor)" />
+                    </AreaChart>
+                  </ResponsiveContainer>
                 </div>
-
-
-                <p className="text-xs text-slate-400 mt-1">Here you will able to see your progress and insights.</p>
               </div>
 
             </div>
@@ -435,7 +400,6 @@ const Dashboard = () => {
               </h2>
 
               <form onSubmit={isEditing ? handleUpdate : handleSubmit} className="space-y-5 text-sm font-medium">
-                {/* Title Input */}
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2" htmlFor="title">
                     Title
@@ -452,7 +416,6 @@ const Dashboard = () => {
                   />
                 </div>
 
-                {/* Description Input */}
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2" htmlFor="description">
                     Description
@@ -469,7 +432,6 @@ const Dashboard = () => {
                   />
                 </div>
 
-                {/* Frequency Select */}
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2" htmlFor="frequency">
                     Frequency
@@ -489,7 +451,6 @@ const Dashboard = () => {
                   </select>
                 </div>
 
-                {/* Form Buttons */}
                 <div className="flex gap-3 pt-4">
                   <button
                     className="flex-1 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl shadow-md transition duration-200 cursor-pointer text-sm"

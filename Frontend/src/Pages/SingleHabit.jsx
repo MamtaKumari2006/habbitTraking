@@ -152,7 +152,7 @@ const SingleHabit = () => {
         {/* Back Button */}
         <Link
           to="/dashboard"
-          className="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-indigo-600 transition"
+          className="inline-flex items-center gap-2 text-sm font-semibold h-9 rounded-3xl p-2 bg-indigo-500 text-black hover:text-indigo-600 transition"
         >
           ← Back to Dashboard
         </Link>
