@@ -2,7 +2,7 @@ import axios from "axios";
 
 const API = axios.create({
     
-    baseURL: "https://APNA-RENDER-BACKEND-URL.onrender.com/api",
+    baseURL: "https://habbittraking.onrender.com//api",
 });
 
 
