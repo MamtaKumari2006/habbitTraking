@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom'
 
 const Home = () => {
   return (
-    // Pura page container soft gradient ke sath
+    
     <div className="min-h-[85vh] bg-linear-to-br from-indigo-200 via-white to-amber-50 flex items-center px-6 lg:px-16 py-12 overflow-hidden overflow-y-auto no-scrollbar">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full">
         
-        {/* Left Container: Text and CTA Buttons */}
+        
         <div className="flex flex-col space-y-6 text-center md:text-left">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 tracking-tight leading-tight">
             Change your habits, <br />
@@ -35,7 +35,7 @@ const Home = () => {
           </div>
         </div>
 
-        {/* Right Container: Beautifully Boxed Image */}
+        
         <div className="flex justify-center items-center">
           <div className="relative w-full max-w-sm sm:max-w-md aspect-square rounded-3xl overflow-hidden shadow-2xl border-4 border-white transform hover:scale-102 transition duration-500">
             <img

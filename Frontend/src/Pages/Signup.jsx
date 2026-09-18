@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react' // 1. useEffect import kiya ✅
 import { useNavigate, Link } from 'react-router-dom'
 import API from '../api/axios'
 
@@ -10,11 +10,19 @@ const Signup = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
 
+  
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/dashboard");
+    }
+  }, [navigate]);
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     setError("")
     setLoading(true)
-  
+
     try {
       const response = await API.post('/auth/signup', { username, email, password })
       localStorage.setItem('token', response.data.token)
@@ -26,17 +34,16 @@ const Signup = () => {
       setLoading(false);
     }
   }
-
   return (
-    // Soft cohesive background across the app
+    
     <div className="min-h-screen w-screen bg-linear-to-br from-indigo-50 via-white to-amber-50 flex items-center justify-center px-4 py-12 overflow-hidden overflow-y-auto no-scrollbar">
-      
+
       {/* Centered Signup Card */}
       <div className="w-full max-w-md bg-white rounded-3xl shadow-xl border border-gray-100 p-8 sm:p-10 transition duration-300 hover:shadow-2xl">
-        
+
         {/* Header */}
         <div className="text-center mb-8">
-          
+
           <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
             Create Account
           </h2>
@@ -55,11 +62,11 @@ const Signup = () => {
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-5">
-          
+
           {/* Username Field */}
           <div>
-            <label 
-              htmlFor="username" 
+            <label
+              htmlFor="username"
               className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-2"
             >
               Username
@@ -77,8 +84,8 @@ const Signup = () => {
 
           {/* Email Field */}
           <div>
-            <label 
-              htmlFor="email" 
+            <label
+              htmlFor="email"
               className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-2"
             >
               Email Address
@@ -96,8 +103,8 @@ const Signup = () => {
 
           {/* Password Field */}
           <div>
-            <label 
-              htmlFor="password" 
+            <label
+              htmlFor="password"
               className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-2"
             >
               Password
@@ -136,8 +143,8 @@ const Signup = () => {
         {/* Footer Redirect */}
         <div className="mt-8 text-center text-sm text-gray-500">
           Already have an account?{' '}
-          <Link 
-            to="/login" 
+          <Link
+            to="/login"
             className="font-semibold text-indigo-600 hover:text-indigo-700 hover:underline transition"
           >
             Sign in

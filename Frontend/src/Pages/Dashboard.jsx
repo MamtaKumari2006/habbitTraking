@@ -341,7 +341,7 @@ const Dashboard = () => {
             <div className="lg:col-span-5 space-y-6">
               <h2 className="text-xl font-extrabold text-slate-800 tracking-tight">Analytics & Insights</h2>
 
-              {/* STATS CARDS (Cleaned up UI) */}
+              
               <div className="grid grid-cols-2 gap-3">
                 <div className="bg-white p-4 rounded-2xl border border-slate-100 shadow-xs">
                   <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Total</p>
@@ -361,7 +361,7 @@ const Dashboard = () => {
                 </div>
               </div>
 
-              {/* GRAPH (Clean container) */}
+              
               <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-xs">
                 <h3 className="text-xs font-extrabold text-slate-500 mb-4 uppercase tracking-widest">
                   📈 Weekly Progress Flow
@@ -390,7 +390,7 @@ const Dashboard = () => {
           </div>
         )}
 
-        {/* ==================== CREATE & EDIT POPUP MODAL ==================== */}
+        
         {AddHabits && (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
             <div className="bg-white rounded-3xl p-8 w-full max-w-md shadow-2xl border border-slate-100">

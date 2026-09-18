@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react' // 1. useEffect import kiya ✅
 import { useNavigate, Link } from 'react-router-dom'
 import API from '../api/axios'
 
@@ -6,7 +6,15 @@ const Login = () => {
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
+
   
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/dashboard");
+    }
+  }, [navigate]);
+
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -35,17 +43,17 @@ const Login = () => {
       setLoading(false)
     }
   }
-return (
-    // h-screen aur w-screen se ye bina scrollbar ke poori screen cover karega
+  return (
+    
     <div className="h-screen w-screen grid grid-cols-1 lg:grid-cols-2 bg-slate-50 overflow-hidden overflow-y-auto no-scrollbar">
+
       
-      {/* LEFT SIDE: Form Container (Very clean, centered on light-grey background) */}
       <div className="flex items-center justify-center p-8 sm:p-12 lg:p-16 bg-slate-50">
         <div className="w-full max-w-md space-y-8">
-          
+
           {/* Header */}
           <div>
-            
+
             <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">
               Welcome back
             </h2>
@@ -64,11 +72,11 @@ return (
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
-            
+
             {/* Email Field */}
             <div>
-              <label 
-                htmlFor="email" 
+              <label
+                htmlFor="email"
                 className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2"
               >
                 Email Address
@@ -87,8 +95,8 @@ return (
 
             {/* Password Field */}
             <div>
-              <label 
-                htmlFor="password" 
+              <label
+                htmlFor="password"
                 className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2"
               >
                 Password
@@ -128,8 +136,8 @@ return (
           {/* Footer Redirect */}
           <div className="text-center lg:text-left text-sm text-slate-500">
             Don't have an account?{' '}
-            <Link 
-              to="/signup" 
+            <Link
+              to="/signup"
               className="font-semibold text-indigo-600 hover:text-indigo-700 hover:underline transition"
             >
               Create one for free
@@ -148,7 +156,7 @@ return (
         />
         {/* Deep Slate/Indigo dark overlay to make text pop */}
         <div className="absolute inset-0 bg-linear-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
-        
+
         {/* Dynamic Text Badge */}
         <div className="absolute bottom-16 left-16 right-16 text-white">
           <p className="text-xs font-bold uppercase tracking-widest text-indigo-300 mb-2">

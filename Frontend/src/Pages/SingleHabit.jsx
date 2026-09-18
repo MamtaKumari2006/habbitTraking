@@ -9,7 +9,7 @@ const SingleHabit = () => {
   const [analytics, setAnalytics] = useState(null)
   const [loading, setLoading] = useState(true)
 
-  // 1. isCompletedToday Helper Function add kiya (Time zone safe comparison) ✅
+  
   const isCompletedToday = (h) => {
     if (!h) return false;
     const today = new Date();
@@ -21,7 +21,7 @@ const SingleHabit = () => {
     });
   };
 
-  // 2. handleToggle function ko single state ke liye simple kiya ✅
+  
   const handleToggle = async () => {
     const completeToday = isCompletedToday(habit);
     const url = completeToday 
@@ -35,10 +35,10 @@ const SingleHabit = () => {
         },
       })
 
-      // Single habit state update kiya
+      
       setHabit(response.data.habit)
 
-      // Dynamic Ring and stats refresh karne ke liye analytics API dobara fetch ki ✅
+      
       const analyticsRes = await API.get(`/habits/list/${id}/analytics`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
       })
@@ -87,7 +87,7 @@ const SingleHabit = () => {
 
   if (!habit) return null
 
-  // 3. completedToday variable ko render se theek pehle declare kiya (Yahan loop ki zarurat nahi hai) ✅
+  
   const completedToday = isCompletedToday(habit);
 
   const completionPercentage = parseInt(analytics?.completionRate) || 0;
@@ -194,7 +194,7 @@ const SingleHabit = () => {
         <div className="bg-white rounded-3xl border border-slate-100 shadow-sm p-8">
           <div className="flex items-center gap-3 mb-4">
             <button
-              onClick={handleToggle} // ID bhejne ki zarurat nahi, ye direct state handle karega ✅
+              onClick={handleToggle}
               className={`w-10 h-10 rounded-full border-2 flex items-center justify-center transition-all duration-200 cursor-pointer shrink-0 ${
                 completedToday
                   ? "bg-emerald-500 border-emerald-500 text-white"
