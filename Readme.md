@@ -100,6 +100,9 @@ habit-tracker/
 │   └── package.json
 │
 └── README.md
+
+---
+
 🚀 Getting Started
 Prerequisites
 Node.js (v18+)
@@ -139,8 +142,9 @@ baseURL: "http://localhost:3000/api"
 Start frontend:
 
 Bash
-
 npm run dev
+
+
 🔗 API Endpoints
 Auth
 Method	Endpoint	Description
@@ -156,6 +160,8 @@ PUT	/api/habits/list/:id	Update habit
 DELETE	/api/habits/list/:id	Delete habit
 POST	/api/habits/list/:id/completed	Mark habit complete
 POST	/api/habits/list/:id/uncompleted	Untick habit
+
+
 Analytics
 Method	Endpoint	Description
 GET	/api/habits/analytics	Overall dashboard stats
@@ -183,6 +189,7 @@ User → Frontend (React)
          ↓
     Heatmap + Charts Update
 
+---
 
 🧠 What I Learned
 Full-stack MERN application architecture
