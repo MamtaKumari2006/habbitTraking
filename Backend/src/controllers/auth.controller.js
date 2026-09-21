@@ -9,6 +9,11 @@ async function signUp(req, res) {
             return res.status(400).json({ message: "All fields are required" });
         }
 
+        
+        if (password.length < 6) {
+            return res.status(400).json({ message: "Password must be at least 6 characters long" });
+        }
+
         const existingUser = await userModel.findOne({ email });
         if (existingUser) {
             return res.status(400).json({ message: "User already exists" });
@@ -44,6 +49,11 @@ async function login(req, res) {
 
         if (!email || !password) {
             return res.status(400).json({ message: "Email and password are required" });
+        }
+
+        
+        if (password.length < 6) {
+            return res.status(400).json({ message: "Invalid credentials" });
         }
 
         const user = await userModel.findOne({ email }).select("+password");
